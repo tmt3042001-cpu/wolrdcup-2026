@@ -8,9 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Cấp quyền ghi trực tiếp trong cấu hình tiến trình
     steps:
     - name: Kiểm tra mã nguồn
       uses: actions/checkout@v3
+      with:
+        persist-credentials: true # Giữ lại thông tin xác thực để đẩy mã nguồn lên
 
     - name: Cài đặt môi trường Python
       uses: actions/setup-python@v4
@@ -25,5 +29,10 @@ jobs:
         git config --global user.name "GitHub Robot"
         git config --global user.email "robot@github.com"
         git add data.json
-        git diff-index --quiet HEAD || git commit -m "Cập nhật dữ liệu kết quả WC 2026 mới nhất [Skip CI]"
-        git push
+        # Kiểm tra xem file data.json có thay đổi không, nếu có mới đẩy lên, tránh gây lỗi vòng lặp
+        if git diff-index --quiet HEAD --; then
+          echo "Không có dữ liệu mới để cập nhật."
+        else
+          git commit -m "Cập nhật dữ liệu kết quả WC 2026 mới nhất [Skip CI]"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+        fi
