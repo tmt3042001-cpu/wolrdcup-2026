@@ -9,12 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Cấp quyền ghi trực tiếp trong cấu hình tiến trình
+      contents: write # Cấp quyền ghi trực tiếp cho tiến trình
     steps:
     - name: Kiểm tra mã nguồn
       uses: actions/checkout@v3
-      with:
-        persist-credentials: true # Giữ lại thông tin xác thực để đẩy mã nguồn lên
 
     - name: Cài đặt môi trường Python
       uses: actions/setup-python@v4
@@ -28,11 +26,21 @@ jobs:
       run: |
         git config --global user.name "GitHub Robot"
         git config --global user.email "robot@github.com"
+        
+        # Kiểm tra xem file data.json có tồn tại và có thay đổi không
         git add data.json
-        # Kiểm tra xem file data.json có thay đổi không, nếu có mới đẩy lên, tránh gây lỗi vòng lặp
+        
+        # Nếu không có thay đổi gì, thoát êm đẹp không báo lỗi
         if git diff-index --quiet HEAD --; then
-          echo "Không có dữ liệu mới để cập nhật."
-        else
-          git commit -m "Cập nhật dữ liệu kết quả WC 2026 mới nhất [Skip CI]"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          echo "Không có dữ liệu mới để cập nhật. Hoàn thành nhiệm vụ!"
+          exit 0
         fi
+        
+        # Nếu có thay đổi, tiến hành tạo bản lưu
+        git commit -m "Cập nhật dữ liệu kết quả WC 2026 mới nhất [Skip CI]"
+        
+        # Tự động lấy tên nhánh hiện tại (main hoặc master) để đẩy lên, tránh ghi đè sai nhánh
+        CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        
+        # Đẩy dữ liệu lên bằng token bảo mật an toàn
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:$CURRENT_BRANCH
