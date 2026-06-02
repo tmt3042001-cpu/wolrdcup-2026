@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup 2026 - Thống Kê Tự Động</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-xl font-black tracking-wider uppercase flex items-center gap-2">
+                    📊 World Cup 202Center
+                </h1>
+                <p id="last-update-text" class="text-xs text-blue-200 mt-1 italic">Đang đồng bộ dữ liệu tự động...</p>
+            </div>
+            <nav class="flex space-x-2 bg-blue-950 p-1 rounded-lg text-sm">
+                <button onclick="switchTab('matches')" id="btn-matches" class="px-4 py-2 rounded text-white font-medium bg-blue-800 transition-all">Trận Đấu (24h)</button>
+                <button onclick="switchTab('analytics')" id="btn-analytics" class="px-4 py-2 rounded text-gray-300 font-medium hover:text-white transition-all">Thống Kê Phong Độ</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        
+        <section id="tab-content-matches" class="space-y-8">
+            <div>
+                <h2 class="text-base font-bold border-l-4 border-green-500 pl-2 mb-4 text-gray-700 uppercase tracking-wide">
+                    ⚽ TRẬN ĐẤU VỪA DIỄN RA (24H QUA)
+                </h2>
+                <div id="past-matches-container" class="grid gap-4 sm:grid-cols-2">
+                    <p class="text-gray-400 italic py-4 text-sm">Đang tải dữ liệu kết quả từ nguồn tin tức...</p>
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="text-base font-bold border-l-4 border-blue-500 pl-2 mb-4 text-gray-700 uppercase tracking-wide">
+                    ⏳ TRẬN ĐẤU SẮP DIỄN RA (24H TỚI)
+                </h2>
+                <div id="upcoming-matches-container" class="grid gap-4 sm:grid-cols-2">
+                    <p class="text-gray-400 italic py-4 text-sm">Đang kiểm tra lịch thi đấu tiếp theo...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-content-analytics" class="hidden space-y-8">
+            <div class="grid gap-4 grid-cols-1 md:grid-cols-3">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between border-b pb-3 mb-3">
+                        <h3 class="font-bold text-red-600 uppercase tracking-wide text-sm flex items-center gap-2">🔥 Top Ghi Bàn</h3>
+                        <span class="text-xs bg-red-50 text-red-600 font-semibold px-2 py-0.5 rounded-full">Đội tuyển</span>
+                    </div>
+                    <ul id="top-goals-list" class="space-y-2.5 text-sm"></ul>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between border-b pb-3 mb-3">
+                        <h3 class="font-bold text-blue-600 uppercase tracking-wide text-sm flex items-center gap-2">📐 Top Phạt Góc</h3>
+                        <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded-full">Tổng số quả</span>
+                    </div>
+                    <ul id="top-corners-list" class="space-y-2.5 text-sm"></ul>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between border-b pb-3 mb-3">
+                        <h3 class="font-bold text-amber-600 uppercase tracking-wide text-sm flex items-center gap-2">🟨 Top Nhận Thẻ Vàng</h3>
+                        <span class="text-xs bg-amber-50 text-amber-700 font-semibold px-2 py-0.5 rounded-full">Tổng số thẻ</span>
+                    </div>
+                    <ul id="top-cards-list" class="space-y-2.5 text-sm"></ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="px-6 py-4 bg-gray-50 border-b border-gray-100 font-bold text-gray-700 text-sm tracking-wide uppercase">
+                    📊 Bảng Thống Kê Phong Độ Chi Tiết Giải Đấu
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100/70 border-b border-gray-200 text-gray-600 font-semibold uppercase text-xs tracking-wider">
+                                <th class="p-4">Đội Tuyển</th>
+                                <th class="p-4 text-center">Số Trận</th>
+                                <th class="p-4 text-center">Điểm Số</th>
+                                <th class="p-4 text-center">Bàn Thắng</th>
+                                <th class="p-4 text-center">Phạt Góc</th>
+                                <th class="p-4 text-center">Thẻ Vàng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standings-table-body" class="divide-y divide-gray-100">
+                            <tr>
+                                <td colspan="6" class="p-8 text-center text-gray-400 italic">Đang tổng hợp bảng số liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Chuyển đổi qua lại giữa Tab Trận Đấu và Tab Thống Kê
+        function switchTab(tab) {
+            const matchesContent = document.getElementById('tab-content-matches');
+            const analyticsContent = document.getElementById('tab-content-analytics');
+            const btnMatches = document.getElementById('btn-matches');
+            const btnAnalytics = document.getElementById('btn-analytics');
+
+            if (tab === 'matches') {
+                matchesContent.classList.remove('hidden');
+                analyticsContent.classList.add('hidden');
+                btnMatches.className = "px-4 py-2 rounded text-white font-medium bg-blue-800 transition-all";
+                btnAnalytics.className = "px-4 py-2 rounded text-gray-300 font-medium hover:text-white transition-all";
+            } else {
+                matchesContent.classList.add('hidden');
+                analyticsContent.classList.remove('hidden');
+                btnMatches.className = "px-4 py-2 rounded text-gray-300 font-medium hover:text-white transition-all";
+                btnAnalytics.className = "px-4 py-2 rounded text-white font-medium bg-blue-800 transition-all";
+            }
+        }
+
+        // Hàm khởi tạo chính: Gọi tệp data.json được lưu cục bộ trên GitHub
+        async function initDashboard() {
+            try {
+                // Đọc trực tiếp tệp data.json nằm cùng thư mục trên GitHub Pages
+                const response = await fetch('./data.json');
+                if (!response.ok) throw new Error("Không thể tải tệp data.json");
+                
+                const database = await response.json();
+                
+                // Hiển thị thời gian Robot cập nhật dữ liệu gần nhất lên giao diện
+                document.getElementById('last-update-text').innerText = `🔄 Cập nhật tự động lúc: ${database.last_update} (Giờ VN)`;
+                
+                // Đổ dữ liệu ra các khu vực tương ứng
+                renderMatches(database.matches);
+                renderAnalytics(database.analytics);
+
+            } catch (err) {
+                console.error("Lỗi đồng bộ hệ thống: ", err);
+                document.getElementById('last-update-text').innerText = "❌ Lỗi: Không thể kết nối với tệp cơ sở dữ liệu data.json";
+            }
+        }
+
+        // Xử lý và hiển thị các trận đấu trong phạm vi 24 giờ
+        function renderMatches(matches) {
+            const pastContainer = document.getElementById('past-matches-container');
+            const upcomingContainer = document.getElementById('upcoming-matches-container');
+            
+            pastContainer.innerHTML = '';
+            upcomingContainer.innerHTML = '';
+            
+            const now = new Date();
+            const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+            
+            let hasPast = false, hasUpcoming = false;
+
+            matches.forEach(m => {
+                const matchTime = new Date(m["Ngày Giờ (VN)"]);
+                const timeDiff = now - matchTime;
+
+                // Cấu trúc khối giao diện của một trận đấu
+                const matchCard = `
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-center text-xs text-gray-400 mb-3 border-b pb-2">
+                            <span class="font-medium bg-gray-100 px-2 py-0.5 rounded text-gray-600">Vòng: ${m["Vòng"]} ${m["Bảng"] !== '-' ? `| Bảng ${m["Bảng"]}` : ''}</span>
+                            <span class="font-semibold text-blue-600">${m["Ngày Giờ (VN)"]}</span>
+                        </div>
+                        <div class="flex justify-between items-center my-2">
+                            <div class="w-2/5 font-bold text-gray-800 text-sm sm:text-base">${m["Đội Nhà"]}</div>
+                            <div class="w-1/5 text-center font-black text-base bg-gray-100 text-gray-700 px-2 py-1 rounded shadow-inner">
+                                ${m["Trạng Thái"] === "Đã kết thúc" ? `${m["Bàn Nhà"]} - ${m["Bàn Khách"]}` : "VS"}
+                            </div>
+                            <div class="w-2/5 text-right font-bold text-gray-800 text-sm sm:text-base">${m["Đội Khách"]}</div>
+                        </div>
+                        ${m["Trạng Thái"] === "Đã kết thúc" ? `
+                        <div class="border-t border-dashed pt-3 mt-3 grid grid-cols-2 text-xs text-gray-500 text-center bg-gray-50/50 rounded p-2">
+                            <div class="border-r border-gray-200">📐 Góc: <b class="text-gray-700">${m["Góc Nhà"]}-${m["Góc Khách"]}</b></div>
+                            <div>🟨 Thẻ: <b class="text-gray-700">${m["Thẻ Vàng Nhà"]}-${m["Thẻ Vàng Khách"]}</b></div>
+                        </div>` : ''}
+                    </div>`;
+
+                // Logic lọc thời gian thực
+                if (timeDiff >= 0 && timeDiff <= ONE_DAY_MS && m["Trạng Thái"] === "Đã kết thúc") {
+                    pastContainer.insertAdjacentHTML('beforeend', matchCard);
+                    hasPast = true;
+                } else if (timeDiff < 0 && Math.abs(timeDiff) <= ONE_DAY_MS) {
+                    upcomingContainer.insertAdjacentHTML('beforeend', matchCard);
+                    hasUpcoming = true;
+                }
+            });
+
+            if (!hasPast) pastContainer.innerHTML = '<p class="text-sm text-gray-400 italic bg-white p-4 rounded-xl border border-gray-100">Không có trận đấu nào diễn ra trong 24h qua.</p>';
+            if (!hasUpcoming) upcomingContainer.innerHTML = '<p class="text-sm text-gray-400 italic bg-white p-4 rounded-xl border border-gray-100">Không có lịch thi đấu nào trong 24h tới.</p>';
+        }
+
+        // Xử lý tính toán bảng xếp hạng và các danh mục Top phong độ cao
+        function renderAnalytics(data) {
+            // Sắp xếp tìm kiếm Top 5 dựa trên mảng dữ liệu analytics trong file JSON
+            const topGoals = [...data].sort((a,b) => b["Tổng Bàn Thắng"] - a["Tổng Bàn Thắng"]).slice(0, 5);
+            const topCorners = [...data].sort((a,b) => b["Tổng Phạt Góc"] - a["Tổng Phạt Góc"]).slice(0, 5);
+            const topCards = [...data].sort((a,b) => b["Tổng Thẻ Vàng"] - a["Tổng Thẻ Vàng"]).slice(0, 5);
+
+            // Hàm đổ dữ liệu vào danh sách Top nhỏ gọn
+            const fillList = (elementId, listData, key, unit) => {
+                const el = document.getElementById(elementId);
+                el.innerHTML = listData.map((item, idx) => `
+                    <li class="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
+                        <span class="text-gray-700"><b class="text-gray-300 mr-1.5 font-bold">#${idx+1}</b> ${item["Đội Tuyển"]}</span>
+                        <span class="font-bold text-gray-900 bg-gray-50 px-2 py-0.5 rounded text-xs border border-gray-100">${item[key]} ${unit}</span>
+                    </li>`).join('');
+            };
+
+            fillList('top-goals-list', topGoals, 'Tổng Bàn Thắng', 'bàn');
+            fillList('top-corners-list', topCorners, 'Tổng Phạt Góc', 'quả');
+            fillList('top-cards-list', topCards, 'Tổng Thẻ Vàng', 'thẻ');
+
+            // Hiển thị toàn bộ bảng dữ liệu chi tiết (Ưu tiên sắp xếp theo Điểm số -> Bàn thắng)
+            const tbody = document.getElementById('standings-table-body');
+            const sortedStandings = [...data].sort((a,b) => (b["Điểm"] - a["Điểm"]) || (b["Tổng Bàn Thắng"] - a["Tổng Bàn Thắng"]));
+            
+            tbody.innerHTML = sortedStandings.map(row => `
+                <tr class="hover:bg-gray-50/80 transition-colors">
+                    <td class="p-4 font-bold text-gray-800">${row["Đội Tuyển"]}</td>
+                    <td class="p-4 text-center text-gray-600">${row["Trận"]}</td>
+                    <td class="p-4 text-center font-bold text-blue-600 bg-blue-50/30">${row["Điểm"]}</td>
+                    <td class="p-4 text-center font-semibold text-gray-700">${row["Tổng Bàn Thắng"]}</td>
+                    <td class="p-4 text-center text-gray-600">${row["Tổng Phạt Góc"]}</td>
+                    <td class="p-4 text-center text-amber-600">${row["Tổng Thẻ Vàng"]}</td>
+                </tr>`).join('');
+        }
+
+        // Tự động kích hoạt chạy hệ thống ngay khi trình duyệt tải xong trang web
+        window.onload = initDashboard;
+    </script>
+</body>
+</html>
