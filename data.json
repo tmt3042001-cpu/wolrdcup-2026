@@ -1,5 +1,5 @@
 {
-    "last_update": "2026-06-02 17:47:46",
+    "last_update": "2026-06-02 18:01:25",
     "matches": [
         {
             "Vòng": "Vòng Bảng",
@@ -60,9 +60,23 @@
         {
             "Vòng": "Vòng Bảng",
             "Bảng": "B",
-            "Ngày Giờ (VN)": "2026-06-02 17:47",
-            "Đội Nhà": "Việt Nam",
-            "Đội Khách": "Thái Lan",
+            "Ngày Giờ (VN)": "2026-06-14 02:00",
+            "Đội Nhà": "Qatar",
+            "Đội Khách": "Thụy Sĩ",
+            "Trạng Thái": "Chưa diễn ra",
+            "Bàn Nhà": null,
+            "Bàn Khách": null,
+            "Góc Nhà": 0,
+            "Góc Khách": 0,
+            "Thẻ Vàng Nhà": 0,
+            "Thẻ Vàng Khách": 0
+        },
+        {
+            "Vòng": "Vòng Bảng",
+            "Bảng": "C",
+            "Ngày Giờ (VN)": "2026-06-14 05:00",
+            "Đội Nhà": "Brazil",
+            "Đội Khách": "Maroc",
             "Trạng Thái": "Chưa diễn ra",
             "Bàn Nhà": null,
             "Bàn Khách": null,
@@ -75,6 +89,7 @@
     "analytics": [
         {
             "Đội Tuyển": "Mexico",
+            "Bảng": "A",
             "Trận": 1,
             "Điểm": 3,
             "Tổng Bàn Thắng": 2,
@@ -83,6 +98,7 @@
         },
         {
             "Đội Tuyển": "Nam Phi",
+            "Bảng": "A",
             "Trận": 1,
             "Điểm": 0,
             "Tổng Bàn Thắng": 1,
@@ -91,6 +107,7 @@
         },
         {
             "Đội Tuyển": "Hàn Quốc",
+            "Bảng": "A",
             "Trận": 1,
             "Điểm": 1,
             "Tổng Bàn Thắng": 1,
@@ -99,6 +116,7 @@
         },
         {
             "Đội Tuyển": "Cộng hòa Séc",
+            "Bảng": "A",
             "Trận": 1,
             "Điểm": 1,
             "Tổng Bàn Thắng": 1,
@@ -107,6 +125,7 @@
         },
         {
             "Đội Tuyển": "Canada",
+            "Bảng": "B",
             "Trận": 1,
             "Điểm": 0,
             "Tổng Bàn Thắng": 0,
@@ -115,6 +134,7 @@
         },
         {
             "Đội Tuyển": "Bosnia",
+            "Bảng": "B",
             "Trận": 1,
             "Điểm": 3,
             "Tổng Bàn Thắng": 2,
@@ -123,6 +143,7 @@
         },
         {
             "Đội Tuyển": "Mỹ",
+            "Bảng": "D",
             "Trận": 1,
             "Điểm": 3,
             "Tổng Bàn Thắng": 3,
@@ -131,6 +152,7 @@
         },
         {
             "Đội Tuyển": "Paraguay",
+            "Bảng": "D",
             "Trận": 1,
             "Điểm": 0,
             "Tổng Bàn Thắng": 1,
@@ -138,7 +160,8 @@
             "Tổng Thẻ Vàng": 3
         },
         {
-            "Đội Tuyển": "Việt Nam",
+            "Đội Tuyển": "Qatar",
+            "Bảng": "B",
             "Trận": 0,
             "Điểm": 0,
             "Tổng Bàn Thắng": 0,
@@ -146,12 +169,45 @@
             "Tổng Thẻ Vàng": 0
         },
         {
-            "Đội Tuyển": "Thái Lan",
+            "Đội Tuyển": "Thụy Sĩ",
+            "Bảng": "B",
             "Trận": 0,
             "Điểm": 0,
             "Tổng Bàn Thắng": 0,
             "Tổng Phạt Góc": 0,
             "Tổng Thẻ Vàng": 0
+        },
+        {
+            "Đội Tuyển": "Brazil",
+            "Bảng": "C",
+            "Trận": 0,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 0,
+            "Tổng Phạt Góc": 0,
+            "Tổng Thẻ Vàng": 0
+        },
+        {
+            "Đội Tuyển": "Maroc",
+            "Bảng": "C",
+            "Trận": 0,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 0,
+            "Tổng Phạt Góc": 0,
+            "Tổng Thẻ Vàng": 0
+        }
+    ],
+    "news": [
+        {
+            "time": "10 phút trước",
+            "title": "Đội tuyển Mexico hoàn tất buổi tập mở đầu tiên tại SVĐ Azteca trước trận khai mạc."
+        },
+        {
+            "time": "1 giờ trước",
+            "title": "Siêu máy tính dự đoán tỷ lệ vô địch: Brazil dẫn đầu với 18.5%, theo sau là Pháp và Argentina."
+        },
+        {
+            "time": "3 giờ trước",
+            "title": "Trọng tài chính điều khiển trận đấu mở màn World Cup 2026 chính thức được FIFA công bố."
         }
     ]
 }
