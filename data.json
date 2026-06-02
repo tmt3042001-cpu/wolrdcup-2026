@@ -1,1 +1,157 @@
-{}
+{
+    "last_update": "2026-06-02 17:47:46",
+    "matches": [
+        {
+            "Vòng": "Vòng Bảng",
+            "Bảng": "A",
+            "Ngày Giờ (VN)": "2026-06-12 02:00",
+            "Đội Nhà": "Mexico",
+            "Đội Khách": "Nam Phi",
+            "Trạng Thái": "Đã kết thúc",
+            "Bàn Nhà": 2,
+            "Bàn Khách": 1,
+            "Góc Nhà": 6,
+            "Góc Khách": 4,
+            "Thẻ Vàng Nhà": 1,
+            "Thẻ Vàng Khách": 2
+        },
+        {
+            "Vòng": "Vòng Bảng",
+            "Bảng": "A",
+            "Ngày Giờ (VN)": "2026-06-12 09:00",
+            "Đội Nhà": "Hàn Quốc",
+            "Đội Khách": "Cộng hòa Séc",
+            "Trạng Thái": "Đã kết thúc",
+            "Bàn Nhà": 1,
+            "Bàn Khách": 1,
+            "Góc Nhà": 4,
+            "Góc Khách": 5,
+            "Thẻ Vàng Nhà": 2,
+            "Thẻ Vàng Khách": 1
+        },
+        {
+            "Vòng": "Vòng Bảng",
+            "Bảng": "B",
+            "Ngày Giờ (VN)": "2026-06-13 02:00",
+            "Đội Nhà": "Canada",
+            "Đội Khách": "Bosnia",
+            "Trạng Thái": "Đã kết thúc",
+            "Bàn Nhà": 0,
+            "Bàn Khách": 2,
+            "Góc Nhà": 3,
+            "Góc Khách": 7,
+            "Thẻ Vàng Nhà": 0,
+            "Thẻ Vàng Khách": 1
+        },
+        {
+            "Vòng": "Vòng Bảng",
+            "Bảng": "D",
+            "Ngày Giờ (VN)": "2026-06-13 08:00",
+            "Đội Nhà": "Mỹ",
+            "Đội Khách": "Paraguay",
+            "Trạng Thái": "Đã kết thúc",
+            "Bàn Nhà": 3,
+            "Bàn Khách": 1,
+            "Góc Nhà": 8,
+            "Góc Khách": 3,
+            "Thẻ Vàng Nhà": 2,
+            "Thẻ Vàng Khách": 3
+        },
+        {
+            "Vòng": "Vòng Bảng",
+            "Bảng": "B",
+            "Ngày Giờ (VN)": "2026-06-02 17:47",
+            "Đội Nhà": "Việt Nam",
+            "Đội Khách": "Thái Lan",
+            "Trạng Thái": "Chưa diễn ra",
+            "Bàn Nhà": null,
+            "Bàn Khách": null,
+            "Góc Nhà": 0,
+            "Góc Khách": 0,
+            "Thẻ Vàng Nhà": 0,
+            "Thẻ Vàng Khách": 0
+        }
+    ],
+    "analytics": [
+        {
+            "Đội Tuyển": "Mexico",
+            "Trận": 1,
+            "Điểm": 3,
+            "Tổng Bàn Thắng": 2,
+            "Tổng Phạt Góc": 6,
+            "Tổng Thẻ Vàng": 1
+        },
+        {
+            "Đội Tuyển": "Nam Phi",
+            "Trận": 1,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 1,
+            "Tổng Phạt Góc": 4,
+            "Tổng Thẻ Vàng": 2
+        },
+        {
+            "Đội Tuyển": "Hàn Quốc",
+            "Trận": 1,
+            "Điểm": 1,
+            "Tổng Bàn Thắng": 1,
+            "Tổng Phạt Góc": 4,
+            "Tổng Thẻ Vàng": 2
+        },
+        {
+            "Đội Tuyển": "Cộng hòa Séc",
+            "Trận": 1,
+            "Điểm": 1,
+            "Tổng Bàn Thắng": 1,
+            "Tổng Phạt Góc": 5,
+            "Tổng Thẻ Vàng": 1
+        },
+        {
+            "Đội Tuyển": "Canada",
+            "Trận": 1,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 0,
+            "Tổng Phạt Góc": 3,
+            "Tổng Thẻ Vàng": 0
+        },
+        {
+            "Đội Tuyển": "Bosnia",
+            "Trận": 1,
+            "Điểm": 3,
+            "Tổng Bàn Thắng": 2,
+            "Tổng Phạt Góc": 7,
+            "Tổng Thẻ Vàng": 1
+        },
+        {
+            "Đội Tuyển": "Mỹ",
+            "Trận": 1,
+            "Điểm": 3,
+            "Tổng Bàn Thắng": 3,
+            "Tổng Phạt Góc": 8,
+            "Tổng Thẻ Vàng": 2
+        },
+        {
+            "Đội Tuyển": "Paraguay",
+            "Trận": 1,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 1,
+            "Tổng Phạt Góc": 3,
+            "Tổng Thẻ Vàng": 3
+        },
+        {
+            "Đội Tuyển": "Việt Nam",
+            "Trận": 0,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 0,
+            "Tổng Phạt Góc": 0,
+            "Tổng Thẻ Vàng": 0
+        },
+        {
+            "Đội Tuyển": "Thái Lan",
+            "Trận": 0,
+            "Điểm": 0,
+            "Tổng Bàn Thắng": 0,
+            "Tổng Phạt Góc": 0,
+            "Tổng Thẻ Vàng": 0
+        }
+    ]
+}
