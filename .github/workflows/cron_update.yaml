@@ -1,0 +1,29 @@
+name: Tự động cập nhật dữ liệu World Cup 2026
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Cứ đúng 60 phút hệ thống sẽ tự chạy kích hoạt Robot một lần
+  workflow_dispatch: # Cho phép bạn bấm nút chạy thủ công bất cứ lúc nào bạn muốn
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Kiểm tra mã nguồn
+      uses: actions/checkout@v3
+
+    - name: Cài đặt môi trường Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Chạy Robot lấy tin tức mới nhất
+      run: python update_data.py
+
+    - name: Tự động lưu dữ liệu mới và đẩy lên GitHub Pages
+      run: |
+        git config --global user.name "GitHub Robot"
+        git config --global user.email "robot@github.com"
+        git add data.json
+        git diff-index --quiet HEAD || git commit -m "Cập nhật dữ liệu kết quả WC 2026 mới nhất [Skip CI]"
+        git push
