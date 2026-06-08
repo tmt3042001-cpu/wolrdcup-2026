@@ -288,20 +288,33 @@
     }
 
     // 5. RENDER TOÀN BỘ GIAO DIỆN
+   // 5. RENDER TOÀN BỘ GIAO DIỆN (Bản cập nhật vá lỗi chống hiển thị undefined)
     function renderAllComponents() {
       document.getElementById("live-time").innerText = appData.updateTime || "08/06/2026";
       
-      // NÂNG CẤP: Render danh sách tin tức dạng Link Card bấm tương tác
-      const newsHtml = appData.news.map(n => `
-        <a href="${n.url}" target="_blank" class="block p-3.5 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-200 group bg-gray-50/50 shadow-xs">
-          <div class="flex justify-between items-center mb-1.5">
-            <span class="text-[9px] tracking-wider font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full uppercase">${n.time}</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
-          </div>
-          <h4 class="text-xs font-bold text-gray-900 group-hover:text-blue-600 transition mb-1 leading-snug">${n.title}</h4>
-          <p class="text-[11px] text-gray-500 font-medium leading-relaxed">${n.summary}</p>
-        </a>
-      `).join('');
+      // Render danh sách tin tức dạng Link Card bấm tương tác
+      const newsHtml = appData.news.map(n => {
+        // Kiểm tra an toàn: Nếu robot chưa có url, sử dụng link FIFA mặc định để bấm không bị lỗi
+        const newsUrl = (n.url && n.url !== "undefined") ? n.url : "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canamexmex2026";
+        
+        // Kiểm tra xem thực sự robot có trả về url hay không để hiển thị icon mũi tên
+        const hasRealUrl = !!(n.url && n.url !== "undefined");
+        
+        // Kiểm tra an toàn cho phần mô tả (summary), nếu không có thì để rỗng chứ không hiện 'undefined'
+        const summaryText = (n.summary && n.summary !== "undefined") ? n.summary : "";
+
+        return `
+          <a href="${newsUrl}" target="_blank" class="block p-3.5 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-200 group bg-gray-50/50 shadow-xs">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="text-[9px] tracking-wider font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full uppercase">${n.time || 'MỚI'}</span>
+              ${hasRealUrl ? `<i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>` : ''}
+            </div>
+            <h4 class="text-xs font-bold text-gray-900 group-hover:text-blue-600 transition mb-1 leading-snug">${n.title || ''}</h4>
+            ${summaryText ? `<p class="text-[11px] text-gray-500 font-medium leading-relaxed">${summaryText}</p>` : ''}
+          </a>
+        `;
+      }).join('');
+      
       document.getElementById("news-container").innerHTML = newsHtml;
 
       // Render danh sách Widgets thống kê mini
