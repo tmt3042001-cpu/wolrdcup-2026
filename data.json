@@ -196,18 +196,11 @@
             "Tổng Thẻ Vàng": 0
         }
     ],
-    "news": [
-        {
-            "time": "Mới cập nhật",
-            "title": "Các đội tuyển đang gấp rút chuẩn bị cho trận khai mạc World Cup 2026."
-        },
-        {
-            "time": "Hôm nay",
-            "title": "Danh sách trọng tài chính điều khiển các trận vòng bảng chính thức được FIFA công bố."
-        },
-        {
-            "time": "1 ngày trước",
-            "title": "Người hâm mộ Mexico sẵn sàng lấp đầy chảo lửa Azteca trong ngày khai mạc."
-        }
-    ]
-}
+   "news": [
+  { 
+    "time": "10 PHÚT TRƯỚC", 
+    "title": "Các đội tuyển đang gấp rút chuẩn bị cho trận khai mạc World Cup 2026.", 
+    "summary": "Xem lịch trình tập luyện chi tiết của các đội tuyển tại SVĐ Azteca trước giờ G.", 
+    "url": "https://www.fifa.com/fifaplus/en/news/articles" 
+  }
+]
