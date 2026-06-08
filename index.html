@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Cup 2026 Center - Bản Hoàn Hảo</title>
+  <title>World Cup 2026 Center - Bản Hoàn Hảo Cập Nhật Tin Tức</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -66,9 +66,9 @@
 
       <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 h-fit">
         <h2 class="text-md font-bold text-gray-900 border-b pb-3 mb-4 uppercase tracking-wider flex items-center gap-2 text-red-600">
-          <i class="fa-solid fa-fire-flame-curved"></i> Tin nóng giải đấu
+          <i class="fa-solid fa-newspaper"></i> Tin nóng giải đấu
         </h2>
-        <div id="news-container" class="space-y-5">
+        <div id="news-container" class="space-y-3.5">
           </div>
       </div>
     </section>
@@ -140,13 +140,34 @@
   </main>
 
   <script>
-    // 1. BỘ DỮ LIỆU DỰ PHÒNG HOÀN HẢO (FALLBACK MOCK DATA - CHUẨN ĐỦ 12 BẢNG A->L)
+    // 1. BỘ DỮ LIỆU DỰ PHÒNG HOÀN HẢO (Bổ sung cấu trúc dữ liệu Tin tức chứa Link điều hướng)
     const backupData = {
-      updateTime: "2026-06-08 15:00:00",
+      updateTime: "2026-06-08 15:20:00",
       news: [
-        { time: "10 PHÚT TRƯỚC", text: "Đội tuyển Mexico hoàn tất buổi tập mở đầu tiên tại SVĐ Azteca trước trận khai mạc." },
-        { time: "1 GIỜ TRƯỚC", text: "Siêu máy tính dự đoán tỷ lệ vô địch: Brazil dẫn đầu với 18.5%, theo sau là Pháp và Argentina." },
-        { time: "3 GIỜ TRƯỚC", text: "Trọng tài chính điều khiển trận đấu mở màn World Cup 2026 chính thức được FIFA công bố." }
+        { 
+          time: "10 PHÚT TRƯỚC", 
+          title: "Mexico hoàn tất buổi tập mở đầu tiên tại SVĐ Azteca", 
+          summary: "Đội chủ nhà đã sẵn sàng cho trận khai mạc lịch sử với sự cổ vũ của hơn 80,000 khán giả.", 
+          url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canamexmex2026" 
+        },
+        { 
+          time: "1 GIỜ TRƯỚC", 
+          title: "Siêu máy tính Opta dự đoán tỷ lệ vô địch World Cup 2026", 
+          summary: "Brazil đang dẫn đầu bảng dự đoán với 18.5% cơ hội nâng cúp, theo sát phía sau là Pháp và Argentina.", 
+          url: "https://www.fifa.com/fifaplus/en/news" 
+        },
+        { 
+          time: "3 GIỜ TRƯỚC", 
+          title: "FIFA công bố danh sách trọng tài bắt chính trận mở màn", 
+          summary: "Tổ trọng tài cấp cao người Ý đã được lựa chọn để điều khiển trận đấu khai mạc tại bảng A.", 
+          url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canamexmex2026" 
+        },
+        {
+          time: "HÔM QUA",
+          title: "Đội tuyển Hàn Quốc chính thức đặt chân đến Los Angeles",
+          summary: "Son Heung-min và các đồng đội đã có mặt tại đại bản doanh, chuẩn bị đối đầu với CH Séc.",
+          url: "https://www.fifa.com/fifaplus/en/news"
+        }
       ],
       matches: [
         { id: 1, type: "past", group: "A", time: "2026-06-12 02:00", team1: "Mexico", score1: 2, team2: "Nam Phi", score2: 1, corners: "6-4", cards: "1-2" },
@@ -159,7 +180,6 @@
         corners: [ {name: "Mỹ", val: "8 quả"}, {name: "Bosnia", val: "7 quả"}, {name: "Mexico", val: "6 quả"}, {name: "Cộng hòa Séc", val: "5 quả"}, {name: "Nam Phi", val: "4 quả"} ],
         cards: [ {name: "Paraguay", val: "3 thẻ"}, {name: "Nam Phi", val: "2 thẻ"}, {name: "Hàn Quốc", val: "2 thẻ"}, {name: "Mỹ", val: "2 thẻ"}, {name: "Mexico", val: "1 thẻ"} ]
       },
-      // Khởi tạo đầy đủ 12 bảng đấu (A đến L) cho 48 quốc gia tham chiến
       teams: [
         { name: "Mexico", group: "A", matches: 1, points: 3, gf: 2, corners: 6, cards: 1 },
         { name: "Nam Phi", group: "A", matches: 1, points: 0, gf: 1, corners: 4, cards: 2 },
@@ -240,7 +260,7 @@
       btnContainer.innerHTML = html;
     }
 
-    // 3. LOGIC CHUYỂN ĐỔI TAB MÀN HÌNH MƯỢT MÀ
+    // 3. LOGIC CHUYỂN ĐỔI TAB MÀN HÌNH
     function switchTab(tabId) {
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
       document.getElementById(`panel-${tabId}`).classList.remove('hidden');
@@ -254,13 +274,12 @@
     async function initSystem() {
       buildFilterButtons();
       try {
-        // Robot Python quét được sẽ lưu đè vào file 'data.json' cùng cấp thư mục
         const response = await fetch('data.json');
         if (response.ok) {
           appData = await response.json();
           console.log("Đã nạp dữ liệu trực tuyến thành công!");
         } else {
-          console.warn("Không tìm thấy data.json, kích hoạt dữ liệu dự phòng hoàn hảo.");
+          console.warn("Không tìm thấy data.json, kích hoạt dữ liệu dự phòng.");
         }
       } catch (err) {
         console.error("Lỗi đọc file mạng, kích hoạt dữ liệu dự phòng.", err);
@@ -272,12 +291,16 @@
     function renderAllComponents() {
       document.getElementById("live-time").innerText = appData.updateTime || "08/06/2026";
       
-      // Render tin tức Sidebar
+      // NÂNG CẤP: Render danh sách tin tức dạng Link Card bấm tương tác
       const newsHtml = appData.news.map(n => `
-        <div class="group border-b border-gray-100 pb-3 last:border-0 last:pb-0">
-          <span class="text-[10px] tracking-wider font-extrabold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full inline-block mb-1.5">${n.time}</span>
-          <p class="text-xs text-gray-700 font-medium group-hover:text-blue-600 transition leading-relaxed">${n.text}</p>
-        </div>
+        <a href="${n.url}" target="_blank" class="block p-3.5 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-200 group bg-gray-50/50 shadow-xs">
+          <div class="flex justify-between items-center mb-1.5">
+            <span class="text-[9px] tracking-wider font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full uppercase">${n.time}</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
+          </div>
+          <h4 class="text-xs font-bold text-gray-900 group-hover:text-blue-600 transition mb-1 leading-snug">${n.title}</h4>
+          <p class="text-[11px] text-gray-500 font-medium leading-relaxed">${n.summary}</p>
+        </a>
       `).join('');
       document.getElementById("news-container").innerHTML = newsHtml;
 
@@ -301,7 +324,7 @@
       `).join('');
     }
 
-    // 6. RENDER LỊCH THI ĐẤU VÀ KẾT QUẢ TRẬN ĐẤU (BẢN CARD ĐẸP NHƯ THIẾT KẾ CỦA BẠN)
+    // 6. RENDER LỊCH THI ĐẤU VÀ KẾT QUẢ TRẬN ĐẤU
     function renderMatches() {
       const pastContainer = document.getElementById("past-matches-container");
       const futureContainer = document.getElementById("future-matches-container");
@@ -345,7 +368,6 @@
     function setGroupFilter(group) {
       activeGroupFilter = group;
       
-      // Cập nhật trạng thái màu sắc các nút bấm lọc
       const alphabets = ["all","A","B","C","D","E","F","G","H","I","J","K","L"];
       alphabets.forEach(ch => {
         const btn = document.getElementById(`btn-group-${ch}`);
@@ -364,7 +386,6 @@
       const searchKey = document.getElementById("search-team-input").value.toLowerCase().trim();
       const tbody = document.getElementById("standings-table-body");
       
-      // Thực hiện lọc dữ liệu nâng cao
       let filteredTeams = appData.teams;
 
       if (activeGroupFilter !== "all") {
@@ -378,10 +399,8 @@
         );
       }
 
-      // Sắp xếp thứ tự ưu tiên: Điểm số cao nhất -> Bàn thắng nhiều nhất
       filteredTeams.sort((x, y) => y.points - x.points || y.gf - x.gf);
 
-      // In kết quả ra bảng dữ liệu chính
       if(filteredTeams.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-400 font-bold bg-gray-50/50"><i class="fa-solid fa-triangle-exclamation"></i> Không tìm thấy đội bóng nào khớp điều kiện của bạn</td></tr>`;
         return;
@@ -403,7 +422,6 @@
       `).join('');
     }
 
-    // Kích hoạt nạp hệ thống ngay khi tải trang
     window.onload = initSystem;
   </script>
 </body>
