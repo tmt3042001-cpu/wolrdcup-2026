@@ -6,7 +6,7 @@ from datetime import datetime
 DATA_SOURCE_URL = "https://raw.githubusercontent.com/openfootball/world-cup/master/2026/v2/matches.json"
 
 def get_fallback_data():
-    # Dữ liệu lịch thi đấu thực tế 100%, chưa có kết quả vì chưa đá
+    # Lịch thi đấu mẫu chuẩn hóa 100%
     return {
         "matches": [
             {"round": "Vòng Bảng", "group": "A", "date": "2026-06-12 02:00", "team1": "Mexico", "team2": "Nam Phi", "score1": None, "score2": None, "corners1": None, "corners2": None, "cards1": None, "cards2": None},
@@ -29,17 +29,35 @@ def fetch_and_analyze():
         req = urllib.request.Request(DATA_SOURCE_URL, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req, timeout=10) as response:
             raw_data = json.loads(response.read().decode())
+            print("Đã tải dữ liệu thành công từ cổng thông tin trực tuyến!")
     except Exception as e:
+        print(f"Không kết nối được nguồn trực tuyến ({e}). Kích hoạt dữ liệu dự phòng...")
         raw_data = get_fallback_data()
             
+    if not isinstance(raw_data, dict) or "matches" not in raw_data:
+        raw_data = get_fallback_data()
+
     team_stats = {}
     processed_matches = []
+    now_time = datetime.now() # Lấy thời gian thực tại giây phút chạy code
     
-    # Gom danh sách đội và bảng đấu để phân loại trên giao diện báo chí
     for match in raw_data.get("matches", []):
         t1, t2 = match["team1"], match["team2"]
         grp = match.get("group", "-")
         
+        # BỘ LỌC THỜI GIAN THỰC KHẮT KHE: Nếu trận đấu diễn ra sau thời gian hiện tại -> Xóa bỏ toàn bộ tỷ số ảo
+        try:
+            match_date = datetime.strptime(match["date"], "%Y-%m-%d %H:%M")
+            if match_date > now_time:
+                match["score1"] = None
+                match["score2"] = None
+                match["corners1"] = None
+                match["corners2"] = None
+                match["cards1"] = None
+                match["cards2"] = None
+        except Exception:
+            pass
+
         if t1 not in team_stats:
             team_stats[t1] = {"Đội Tuyển": t1, "Bảng": grp, "Trận": 0, "Điểm": 0, "Tổng Bàn Thắng": 0, "Tổng Phạt Góc": 0, "Tổng Thẻ Vàng": 0}
         if t2 not in team_stats:
@@ -54,8 +72,8 @@ def fetch_and_analyze():
             "Đội Nhà": t1,
             "Đội Khách": t2,
             "Trạng Thái": status,
-            "Bàn Nhà": match.get("score1", ""),
-            "Bàn Khách": match.get("score2", ""),
+            "Bàn Nhà": match.get("score1", "") if match.get("score1") is not None else "",
+            "Bàn Khách": match.get("score2", "") if match.get("score2") is not None else "",
             "Góc Nhà": match.get("corners1", 0) if match.get("corners1") is not None else 0, 
             "Góc Khách": match.get("corners2", 0) if match.get("corners2") is not None else 0,
             "Thẻ Vàng Nhà": match.get("cards1", 0) if match.get("cards1") is not None else 0,
@@ -92,6 +110,7 @@ def fetch_and_analyze():
     
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(final_database, f, ensure_ascii=False, indent=4)
+    print("Hệ thống đã ghi và đồng bộ dữ liệu chuẩn ra file data.json!")
 
 if __name__ == "__main__":
     fetch_and_analyze()
