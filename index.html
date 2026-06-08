@@ -187,7 +187,7 @@
             allMatchesContainer.innerHTML = '';
             
             // Giả lập lấy mốc thời gian thực tế dựa trên dữ liệu hiện hành để tránh trống thông tin trước ngày khởi tranh
-            const now = new Date("2026-06-12 00:00"); // Đưa mốc so sánh về sát ngày đá để lọc tự động
+           const now = new Date(); // Đưa mốc so sánh về sát ngày đá để lọc tự động
             const ONE_DAY_MS = 24 * 60 * 60 * 1000;
             
             let hasPast = false, hasUpcoming = false;
