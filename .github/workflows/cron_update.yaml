@@ -26,7 +26,7 @@ jobs:
       run: |
         git config --global user.name "GitHub Robot"
         git config --global user.email "robot@github.com"
-        
+        touch data.json
         # Kiểm tra xem file data.json có tồn tại và có thay đổi không
         git add data.json
         
