@@ -196,18 +196,18 @@
             "Tổng Thẻ Vàng": 0
         }
     ],
-    "news": [
-        {
-            "time": "Mới cập nhật",
-            "title": "Các đội tuyển đang gấp rút chuẩn bị cho trận khai mạc World Cup 2026."
-        },
-        {
-            "time": "Hôm nay",
-            "title": "Danh sách trọng tài chính điều khiển các trận vòng bảng chính thức được FIFA công bố."
-        },
-        {
-            "time": "1 ngày trước",
-            "title": "Người hâm mộ Mexico sẵn sàng lấp đầy chảo lửa Azteca trong ngày khai mạc."
-        }
-    ]
+  "news": [
+  { 
+    "time": "10 PHÚT TRƯỚC", 
+    "title": "Tên tiêu đề bài báo muốn hiển thị ở đây", 
+    "summary": "Nội dung tóm tắt ngắn của tin tức hiển thị dòng dưới.", 
+    "url": "https://đường-dẫn-link-chi-tiết-bài-viết.com" 
+  },
+  { 
+    "time": "2 GIỜ TRƯỚC", 
+    "title": "Brazil chốt danh sách đội hình thi đấu chính thức", 
+    "summary": "Neymar Jr bất ngờ vắng mặt trong danh sách rút gọn đăng ký thi đấu trận đầu.", 
+    "url": "https://www.fifa.com/fifaplus/en/news" 
+  }
+]
 }
