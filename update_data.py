@@ -4,7 +4,16 @@ import os
 from datetime import datetime
 
 DATA_SOURCE_URL = "https://raw.githubusercontent.com/openfootball/world-cup/master/2026/v2/matches.json"
+import requests
 
+url = "LINK_NGUON_CAO_TIN_TUC_CUA_BAN"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
+
+response = requests.get(url, headers=headers)
+# Thêm dòng này để nếu lỗi kết nối hoặc bị chặn, robot sẽ dừng lại báo đỏ ngay lập tức thay vì ghi file rỗng
+response.raise_for_status()
 def get_fallback_data():
     # Lịch thi đấu mẫu chuẩn hóa 100%
     return {
